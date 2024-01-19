@@ -1,9 +1,9 @@
 import './css/main.css'
 
 import SvgLoader from './svg-loader'
-import { symbolSets } from './data/symbol-sets'
+import {SymbolSet} from './symbol-sets.ts'
 
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('DOMContentLoaded', async () => {
     const notifyContainer = document.getElementById('notify-container');
     notifyContainer?.addEventListener('animationend', _evt => {
         notifyContainer.classList.remove('notify-animate');
@@ -28,20 +28,24 @@ window.addEventListener('DOMContentLoaded', () => {
     }))
 
     setSelectContainerVisibility();
-    setupFileSelect();
+    await setupFileSelect();
 })
 
-function setupFileSelect() {
+async function setupFileSelect() {
     const select = document.getElementById('file-select') as HTMLSelectElement;
     select.addEventListener('change', event => {
         loadSymbols((event.target as HTMLSelectElement).value)
     })
-    symbolSets.forEach(symbolSet => {
-        const option = select.appendChild(document.createElement('option'))
-        option.value = symbolSet.file
-        option.text = symbolSet.display
-    });
-    loadSymbols(select.value)
+    await fetch(`${import.meta.env.BASE_URL}/symbol-sets.json`)
+      .then(result => result.json())
+      .then(symbolSets => {
+          (symbolSets as Array<SymbolSet>).forEach((symbolSet: { file: string; display: string; }) => {
+              const option = select.appendChild(document.createElement('option'))
+              option.value = `${import.meta.env.BASE_URL}/${symbolSet.file}`
+              option.text = symbolSet.display
+          });
+          loadSymbols(select.value)
+      })
 }
 
 function loadSymbols(svgFile: string) {
@@ -55,7 +59,7 @@ function loadSymbols(svgFile: string) {
                 .sort((lhs, rhs) => {
                     return lhs.id.localeCompare(rhs.id);
                 })
-                .forEach(symbol => 
+                .forEach(symbol =>
                     container.appendChild(createIconContainer(symbol))
                         .addEventListener('click', evt => {
                             selectSymbol(evt.target as HTMLElement);
@@ -89,7 +93,7 @@ function createIconContainer(symbol: SVGSymbolElement) {
 function selectSymbol(element: HTMLElement) {
     const iconContainer = findIconContainer(element)!;
     const symbolId = (iconContainer as HTMLElement).dataset['symbolId']!;
-        
+
     const selected = getSelectedSymbolIds();
     if (!selected.includes(symbolId)) {
         const container = (document.getElementById('select-icon-container') as Element);

@@ -17,7 +17,6 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh 'mkdir -p $TARGET_FOLDER'
                 sh 'rm $TARGET_FOLDER/assets/*'
                 sh 'rsync -a $DIST_FOLDER/* $TARGET_FOLDER'
             }
