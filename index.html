@@ -2,38 +2,15 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8"/>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>SVG Symbol Tool</title>
 </head>
 
 <body>
-  <div id="container">
-    <div id="header">
-      <span class="heading" style="display: inline">SVG Symbol Subset Tool</span>
-      <label for="filter-input">Filter: </label>
-      <input id="filter-input" type="text" placeholder="Filter" />
-    </div>
-    <div><label for="file-select">Symbol Set: </label><select id="file-select"></select></div>
-    <div id="select-container">
-      
-      <div class="label-container"><label>Selected</label><button id="copy-button">Copy</button></div>
-      <div id="select-icon-container"></div>
-    </div>
-    <div id="symbol-container"></div>
-  </div>
-  <div id="notify-container" class="notify-container">
-    <div id="notify" class="notify">SVG copied</div>
-  </div>
-  <footer class="footer">
-    <ul>
-      <li>Web app copyright © 2023-24 Paul Sobolik</li>
-      <li>Bootstrap symbols copyright © 2018 Twitter</li>
-      <li>Font Awesome sprites © 2023 Fonticons, Inc.</li>
-    </ul>
-  </footer>
-  <script type="module" src="/src/main.ts"></script>
+<div id="root"></div>
+<script type="module" src="/src/main.tsx"></script>
 </body>
 
 </html>

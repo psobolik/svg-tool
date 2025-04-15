@@ -1,0 +1,198 @@
+:root {
+    --main-color: #dfdfdf;
+    --main-bg-color: #212121;
+
+    --icon-bg-color: #444444;
+    --icon-fill-color: #dfdfdf;
+    --icon-stroke-color: #fdfdfd;
+    --svg-width: 75px;
+
+    --link-color: #8888ee;
+    --link-bg-color: transparent;
+    --link-hover-color: #008;
+    --link-hover-bg-color: #aaaaff;
+
+    color-scheme: light dark;
+    background-color: var(--main-bg-color);
+    color: var(--main-color);
+    font-size: 16pt;
+}
+
+body {
+    font-family: sans-serif;
+    margin: 1em 1em;
+}
+
+#container {
+    max-width: 1100px;
+    margin: auto auto;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    flex-basis: 10%;
+
+    & #header {
+        font-size: 12pt;
+        display: flex;
+        align-items: end;
+
+        & .heading {
+            font-size: xx-large;
+            font-weight: bold;
+            flex: 1;
+        }
+
+        & label {
+            margin-left: 1em;
+        }
+
+        & input {
+            margin-left: 0.5em;
+            height: 2em;
+        }
+    }
+    & #controls {
+        margin-top: 0.5em;
+        display: flex;
+        align-items: baseline;
+
+        & div:nth-child(1) {
+            flex: 1;
+        }
+    }
+}
+
+main {
+    margin-top: 1em;
+    flex-basis: 80%;
+
+    & #select-container {
+        margin-bottom: 1em;
+        border: solid 1px var(--main-color);
+        border-radius: 5px;
+
+        & .label-container {
+            display: flex;
+
+            & label {
+                flex: auto;
+                margin: 0.5em;
+                border-bottom-style: solid;
+                border-bottom-width: 1px;
+            }
+            & button {
+                width: 3em;
+                height: 2.5em;
+                & svg {
+                    fill: var(--main-color);
+                    height: 16px;
+                    width: 16px;
+                }
+            }
+        }
+    }
+
+    & #symbol-container {
+        /*height: 60vh;*/
+        overflow-y: scroll;
+        /*resize: vertical;*/
+    }
+}
+
+footer {
+    font-size: x-small;
+    flex-basis: 10%;
+    margin: 1em 0;
+
+    & div::before {
+        font-size: xx-small;
+        content: '◽ ';
+    }
+    & a {
+        color: var(--link-color);
+        background: var(--link-bg-color);
+
+        &:hover {
+            color: var(--link-hover-color);
+            background: var(--link-hover-bg-color);
+        }
+    }
+}
+
+.icon-container {
+    width: 150px;
+    display: inline-table;
+    text-align: center;
+    padding: 0.5em;
+}
+
+.no-stroke {
+    stroke: none;
+}
+
+.no-fill {
+    fill: none;
+}
+
+.stroke {
+    stroke: var(--icon-stroke-color);
+}
+
+.fill {
+    fill: var(--icon-fill-color);
+}
+
+.visible {
+    height: auto;
+}
+
+.invisible {
+    display: none;
+    height: 0;
+}
+
+#select-icon-container {
+    display: inline-block;
+}
+
+.icon-container {
+    width: 50px;
+    display: inline-table;
+    text-align: center;
+    padding: 0.5em;
+}
+
+.svg-container {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0.75em;
+    background-color: var(--icon-bg-color);
+    border: solid thin var(--icon-bg-color);
+    border-radius: 10px;
+    padding: 0.25em 1.25em;
+    display: block;
+
+    & svg {
+        width: var(--svg-width);
+        height: var(--svg-width);
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --main-color: #323232;
+        --main-bg-color: #ffffff;
+
+        --icon-bg-color: #e4e4e4;
+        --icon-fill-color: #4f4f4f;
+        --icon-stroke-color: #fdfdfd;
+        --svg-width: 75px;
+
+        --link-color: #8888ee;
+        --link-bg-color: transparent;
+        --link-hover-color: #008;
+        --link-hover-bg-color: #aaaaff;
+    }
+}
